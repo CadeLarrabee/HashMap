@@ -1,29 +1,35 @@
 {
   "name": "to-do-app",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "type": "module",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "watch": "watch 'npm run build' ./src",
     "pushtopages": "git subtree push --prefix dist origin gh-pages"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/CadeLarrabee/To-Do-app.git"
+    "url": "git+ssh://git@github.com/CadeLarrabee/LinkedLists.git"
   },
   "author": "Cade Larrabee",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/CadeLarrabee/To-Do-app/issues"
+    "url": "https://github.com/CadeLarrabee/LinkedLists/issues"
   },
-  "homepage": "https://github.com/CadeLarrabee/To-Do-app#readme",
+  "homepage": "https://github.com/CadeLarrabee/LinkedLists#readme",
   "devDependencies": {
     "css-loader": "^6.10.0",
     "style-loader": "^3.3.4",
-    "webpack": "^5.90.1",
+    "webpack": "^5.91.0",
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
-    "date-fns": "^3.3.1"
-  }
+    "date-fns": "^3.3.1",
+    "node": "^22.1.0",
+    "watch": "^1.0.2"
+  },
+  "keywords": [],
+  "description": ""
 }

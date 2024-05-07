@@ -1,13 +1,16 @@
-import "./style.css";
-import { Project } from "./projectModule.js";
-import { Task } from "./taskModule.js";
-import { DomController } from "./DomManip.js";
-import { format } from "date-fns";
+import { LinkedList } from "./linkedListModule.js";
 
 function OnEntry() {
-  const DomManip = new DomController();
+  //Generate a linked list here.
+  const linkedList = new LinkedList();
+  //const nodeOne = new Node(18,null,null);
+  //const nodeTwo = new Node(44, null, null);
+  //const nodeThree = new Node(2, null, null);
 
-  DomManip.GenerateOnEntry();
+  linkedList.append(18);
+  linkedList.append(44);
+  linkedList.append(2);
+  linkedList.toString();
 }
 
 OnEntry();
