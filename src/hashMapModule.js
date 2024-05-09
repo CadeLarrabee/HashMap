@@ -21,13 +21,13 @@ export class HashMap {
   set(key, value) {
     //If the value already exists at the key location, overwrite it.
     //If a key/value pair already exists there, but is not identical, we have a collision.
-    const hashcode = this.hash(key);
+    const hashCode = this.hash(key);
     //this.hashMap[hashcode] = {key,value};
     //This is the basic hashcode, but it doesn't handle collisions or overwriting values.
     //first, check if there is a collision.
     //If there is, handle it by increasing the array table size, rehashing everything into the new table.
     //And assigning the new copied table over the old table.
-    if (!this.hashMap[hashcode]) {
+    if (!this.hashMap[hashCode]) {
       //If nothing exists in the hashmap, push the key/value pair into it.
       this.hashMap[hashCode] = [];
       this.hashMap[hashCode].push({ key, value });
@@ -37,13 +37,14 @@ export class HashMap {
     } else {
       //Otherwise, we have a conflict.
       //We should upsize the array, and attempt again to re-write the info.
-      this.conflictHandler();
+      this.enlargeArray();
       //Call the set code again, hopefully with a different result.
       //If not, upsize it again until we have a different hash location
       this.set(key, value);
     }
+    this.calculateAndAdjustLoad();
   }
-  conflictHandler() {
+  enlargeArray() {
     //Given the new size, create a new array of that size. Take each key value pair and
     //re-assign them to the new array. Then, overwrite the old array.
     this.setTableSize(this.tableSize * 2);
@@ -61,8 +62,34 @@ export class HashMap {
 
     this.hashMap = newHashMap;
   }
+
+  calculateAndAdjustLoad() {
+    //count all values within the array.
+    //If the amount of places that have values is greater than the array length
+    //we should upscale it.
+    const counter = 0;
+    this.hashMap.forEach((element) => {
+      element ? counter++ : "";
+    });
+
+    if (counter / this.hashMap.length > this.loadFactor) {
+      this.enlargeArray();
+    }
+  }
+
   //Setters
   setTableSize(newTableSize) {
     this.tableSize = newTableSize;
+  }
+  //Getters
+  get(key) {
+    //takes one argument as a key
+    // and returns the value that is assigned to this key. If a key is not found, return null.
+    hashcode = this.hash(key);
+    if (this.hashMap[hashCode].some((pair) => pair.key === key)) {
+      return this.hashMap[hashCode];
+    } else {
+      return null;
+    }
   }
 }
